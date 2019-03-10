@@ -99,6 +99,7 @@ class MapSpec extends FunSpec with MustMatchers {
 
     it("should report its size as the number of key/value pairs it contains") {
       Map[String, Int]() must have size (0)
+      Map[String, Int]() must be ('empty)
       Map("ho" -> 12) must have size (1)
       Map("hi" -> 13, "ho" -> 12) must have size (2)
     }
