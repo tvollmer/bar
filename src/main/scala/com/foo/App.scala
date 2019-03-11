@@ -1,5 +1,7 @@
 package com.foo
 
+import scala.concurrent.Future
+
 /**
  * @author ${user.name}
  *
@@ -41,7 +43,15 @@ object App {
     //        Null [ should almost never be used ]
     //          Nothing
 
+    movePoint()
 
+    // TODO : concurrency -> https://blog.matthewrathbone.com/2017/03/28/scala-concurrency-options.html
+    val f: Future[Int] = Future {
+      // your long-running task here that returns an Int ...
+      Thread.sleep(1000)
+      5
+    }
+    
   }
 
   def valsAreFinal() {
@@ -122,6 +132,21 @@ object App {
 
     val customIntroducer = new CustomizedIntroducer("How are you, ", "?")
     customIntroducer.greet("Scala developer")
+  }
+
+  def movePoint(): Unit ={
+    val point1 = new Point2(2, 3)
+    println("point1 : " + point1)
+    point1.move(1, 1)
+    println("point1 : " + point1)
+
+    val origin = new Point2
+    val point2 = new Point2(1)
+    val point3 = new Point2(y=2)
+    println("origin : " + origin)
+    println("point2 : " + point2)
+    println("point3 : " + point3)
+
   }
 
 }
